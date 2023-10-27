@@ -15,16 +15,7 @@ import { ResultModal } from "./components/result-modal";
 import { QuestionCard } from "./components/question-card/question-card";
 import { FormPayload } from "./types";
 import { IncorrectNote } from "./components/incorrect-note";
-
-function StartButton() {
-  const { start } = useQuiz();
-
-  return (
-    <button className="btn" onClick={start}>
-      퀴즈 풀기
-    </button>
-  );
-}
+import { StartButton } from "./components/start-button";
 
 export default function Home() {
   const isSolving = useAtomValue(isSolvingAtom);
