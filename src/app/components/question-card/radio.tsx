@@ -1,17 +1,26 @@
-import { Fragment } from "react";
-import { useFormContext, useWatch } from "react-hook-form";
-import { FormPayload } from "~/app/types";
+import {
+  Control,
+  FieldPath,
+  FieldValues,
+  useFormContext,
+  useWatch,
+} from "react-hook-form";
 
-type RadioProps = {
-  name: string;
+type RadioProps<TFieldValues extends FieldValues> = {
+  control: Control<TFieldValues>;
+  name: FieldPath<TFieldValues>;
   text: string;
   correctAnswer: string;
 };
 
-export function Radio({ name, text, correctAnswer }: RadioProps) {
-  const { control, register } = useFormContext<FormPayload>();
-
-  const value = useWatch({ control, name });
+export function Radio<TFieldValues extends FieldValues>({
+  control,
+  name,
+  text,
+  correctAnswer,
+}: RadioProps<TFieldValues>) {
+  const { register } = useFormContext<TFieldValues>();
+  const value = useWatch<TFieldValues>({ control, name });
   const classNames = ["radio"];
 
   if (value != null) {

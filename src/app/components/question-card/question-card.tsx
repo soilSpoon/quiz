@@ -4,8 +4,12 @@ import { useQuestions } from "~/app/hooks/questions/use-questions";
 import { Timer } from "../timer";
 import { Radio } from "./radio";
 import { Actions } from "./actions";
+import { useFormContext } from "react-hook-form";
+import { FormPayload } from "~/app/types";
 
 export function QuestionCard() {
+  const { control } = useFormContext<FormPayload>();
+
   const questions = useQuestions();
   const questionNumber = useAtomValue(questionNumberAtom);
 
@@ -27,7 +31,8 @@ export function QuestionCard() {
             return (
               <Radio
                 key={text}
-                name={questionNumber.toString()}
+                control={control}
+                name={`${questionNumber}`}
                 text={text}
                 correctAnswer={correctAnswer}
               />

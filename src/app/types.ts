@@ -1,3 +1,5 @@
+type NumericalString = `${number}`;
+
 export type FormPayload = {
-  [key: string]: string;
+  [key: NumericalString]: string;
 };

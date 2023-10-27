@@ -9,7 +9,7 @@ export function Actions() {
   const isFirst = questionNumber === 0;
   const isLast = questionNumber === 9;
 
-  const value = getValues(questionNumber.toString());
+  const value = getValues(`${questionNumber}`);
 
   const nextQuestion = () => {
     setQuestionNumber((prev) => Math.min(prev + 1, 9));

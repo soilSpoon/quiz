@@ -9,6 +9,6 @@ export function useIncorrectList() {
   if (questions === undefined || result === null) return [];
 
   return questions.filter(
-    ({ correctAnswer }, index) => result[index] !== correctAnswer
+    ({ correctAnswer }, index) => result[`${index}`] !== correctAnswer
   );
 }
