@@ -14,6 +14,7 @@ import { useQuiz } from "./hooks/actions/use-quiz";
 import { ResultModal } from "./components/result-modal";
 import { QuestionCard } from "./components/question-card/question-card";
 import { FormPayload } from "./types";
+import { IncorrectNote } from "./components/incorrect-note";
 
 function StartButton() {
   const { start } = useQuiz();
@@ -55,11 +56,14 @@ export default function Home() {
 
   return (
     <main className="flex justify-center items-center w-screen h-screen">
-      <FormProvider {...form}>
-        <form onSubmit={onSubmit}>
-          {isSolving ? <QuestionCard /> : <StartButton />}
-        </form>
-      </FormProvider>
+      <div className="flex flex-col items-center gap-2">
+        <FormProvider {...form}>
+          <form onSubmit={onSubmit}>
+            {isSolving ? <QuestionCard /> : <StartButton />}
+          </form>
+        </FormProvider>
+        {!isSolving && <IncorrectNote />}
+      </div>
       <ResultModal ref={ref} onClose={onCloseDialog} />
     </main>
   );
