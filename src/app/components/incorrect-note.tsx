@@ -17,6 +17,7 @@ export function IncorrectNote() {
                 className="grid grid-cols-2 items-center"
               >
                 <p
+                  // 문제 텍스트에는 HTML 특수문자 코드가 포함되어 있어 dangerouslySetInnerHTML을 사용하였습니다.
                   dangerouslySetInnerHTML={{
                     __html: item.question,
                   }}

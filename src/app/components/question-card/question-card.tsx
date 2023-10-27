@@ -12,6 +12,8 @@ export function QuestionCard() {
 
   const questions = useQuestions();
   const questionNumber = useAtomValue(questionNumberAtom);
+  // 사용자가 보기 편하도록 1부터 시작하도록 하였습니다.
+  const questionUserNumber = questionNumber + 1;
 
   if (questions === undefined) return null;
 
@@ -22,8 +24,9 @@ export function QuestionCard() {
       <Timer isRunning={true} className="text-2xl font-bold" />
       <div className="flex flex-col items-center gap-1">
         <p
+          // 문제 텍스트에는 HTML 특수문자 코드가 포함되어 있어 dangerouslySetInnerHTML을 사용하였습니다.
           dangerouslySetInnerHTML={{
-            __html: [questionNumber + 1, question].join(". "),
+            __html: [questionUserNumber, question].join(". "),
           }}
         />
         <div className="flex flex-col">
