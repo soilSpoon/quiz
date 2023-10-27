@@ -6,7 +6,7 @@ export function useIncorrectList() {
   const questions = useQuestions();
   const result = useAtomValue(resultAtom);
 
-  if (questions === undefined || result === null) return null;
+  if (questions === undefined || result === null) return [];
 
   return questions.filter(
     ({ correctAnswer }, index) => result[index] !== correctAnswer

@@ -12,8 +12,6 @@ export const ResultModal = forwardRef<HTMLDialogElement, ResultModalProps>(
   function Modal({ onClose }, ref) {
     const incorrectList = useIncorrectList();
 
-    if (incorrectList === null) return null;
-
     const incorrectCount = incorrectList.length;
     const correctCount = 10 - incorrectCount;
 

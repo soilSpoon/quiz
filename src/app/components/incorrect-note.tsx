@@ -3,8 +3,6 @@ import { useIncorrectList } from "../hooks/questions/use-incorrect-list";
 export function IncorrectNote() {
   const incorrectList = useIncorrectList();
 
-  if (incorrectList === null) return null;
-
   return (
     <div className="card bg-neutral text-neutral-content">
       <div className="card-body items-center text-center">
