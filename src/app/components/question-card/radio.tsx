@@ -19,14 +19,16 @@ export function Radio({ name, text, correctAnswer }: RadioProps) {
   }
 
   return (
-    <Fragment>
-      <p>{text}</p>
-      <input
-        type="radio"
-        {...register(name)}
-        className={classNames.join(" ")}
-        value={text}
-      />
-    </Fragment>
+    <div className="form-control">
+      <label className="label cursor-pointer flex gap-3">
+        <span className="label-text">{text}</span>
+        <input
+          type="radio"
+          {...register(name)}
+          className={classNames.join(" ")}
+          value={text}
+        />
+      </label>
+    </div>
   );
 }

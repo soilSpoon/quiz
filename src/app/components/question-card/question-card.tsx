@@ -22,7 +22,7 @@ export function QuestionCard() {
             __html: [questionNumber + 1, question].join(". "),
           }}
         />
-        <div className="grid grid-cols-[auto_1fr] gap-1">
+        <div className="flex flex-col">
           {answers.map(({ text }) => {
             return (
               <Radio
