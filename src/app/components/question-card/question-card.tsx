@@ -17,7 +17,11 @@ export function QuestionCard() {
     <div className="flex flex-col items-end gap-1">
       <Timer isRunning={true} />
       <div className="flex flex-col items-center gap-1">
-        <p dangerouslySetInnerHTML={{ __html: question }} />
+        <p
+          dangerouslySetInnerHTML={{
+            __html: [questionNumber + 1, question].join(". "),
+          }}
+        />
         <div className="grid grid-cols-[auto_1fr] gap-1">
           {answers.map(({ text }) => {
             return (
