@@ -36,7 +36,7 @@ export default function Home() {
   useFormPersist("values", {
     watch: form.watch,
     setValue: form.setValue,
-    storage: window.localStorage,
+    storage: typeof window !== "undefined" ? window.localStorage : undefined,
   });
 
   const setQuestionNumber = useSetAtom(questionNumberAtom);

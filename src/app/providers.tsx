@@ -8,7 +8,7 @@ import {
 import { queryClient } from "./utils/query-client";
 
 export const persister = createSyncStoragePersister({
-  storage: window.localStorage,
+  storage: typeof window !== "undefined" ? window.localStorage : undefined,
 });
 
 persistQueryClientRestore({
