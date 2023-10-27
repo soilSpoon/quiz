@@ -1,11 +1,19 @@
 "use client";
 
-import { useAtomValue } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
+import { useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import useFormPersist from "react-hook-form-persist";
-import { isSolvingAtom } from "./atoms";
+import {
+  isSolvingAtom,
+  questionNumberAtom,
+  resultAtom,
+  timeAtom,
+} from "./atoms";
 import { useQuiz } from "./hooks/actions/use-quiz";
+import { ResultModal } from "./components/result-modal";
 import { QuestionCard } from "./components/question-card/question-card";
+import { FormPayload } from "./types";
 
 function StartButton() {
   const { start } = useQuiz();
@@ -19,7 +27,10 @@ function StartButton() {
 
 export default function Home() {
   const isSolving = useAtomValue(isSolvingAtom);
-  const form = useForm();
+  const form = useForm<FormPayload>();
+  const ref = useRef<HTMLDialogElement>(null);
+  const setResult = useSetAtom(resultAtom);
+  const { stop } = useQuiz();
 
   useFormPersist("values", {
     watch: form.watch,
@@ -27,11 +38,29 @@ export default function Home() {
     storage: window.localStorage,
   });
 
+  const setQuestionNumber = useSetAtom(questionNumberAtom);
+  const setTime = useSetAtom(timeAtom);
+
+  const onSubmit = form.handleSubmit((data) => {
+    stop();
+    setResult(data);
+    ref.current?.showModal();
+  });
+
+  const onCloseDialog = () => {
+    form.reset();
+    setTime(0);
+    setQuestionNumber(0);
+  };
+
   return (
     <main className="flex justify-center items-center w-screen h-screen">
       <FormProvider {...form}>
-        <form>{isSolving ? <QuestionCard /> : <StartButton />}</form>
+        <form onSubmit={onSubmit}>
+          {isSolving ? <QuestionCard /> : <StartButton />}
+        </form>
       </FormProvider>
+      <ResultModal ref={ref} onClose={onCloseDialog} />
     </main>
   );
 }

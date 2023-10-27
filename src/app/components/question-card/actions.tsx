@@ -1,9 +1,10 @@
 import { useAtom } from "jotai";
 import { useFormContext } from "react-hook-form";
 import { questionNumberAtom } from "~/app/atoms";
+import { FormPayload } from "~/app/types";
 
 export function Actions() {
-  const { getValues } = useFormContext();
+  const { getValues } = useFormContext<FormPayload>();
   const [questionNumber, setQuestionNumber] = useAtom(questionNumberAtom);
   const isFirst = questionNumber === 0;
   const isLast = questionNumber === 9;

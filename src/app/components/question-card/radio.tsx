@@ -1,16 +1,15 @@
 import { Fragment } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
+import { FormPayload } from "~/app/types";
 
-export function Radio({
-  name,
-  text,
-  correctAnswer,
-}: {
+type RadioProps = {
   name: string;
   text: string;
   correctAnswer: string;
-}) {
-  const { control, register } = useFormContext();
+};
+
+export function Radio({ name, text, correctAnswer }: RadioProps) {
+  const { control, register } = useFormContext<FormPayload>();
 
   const value = useWatch({ control, name });
   const classNames = ["radio"];
