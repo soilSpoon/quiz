@@ -26,10 +26,7 @@ export const ResultModal = forwardRef<HTMLDialogElement, ResultModalProps>(
         <div className="modal-box">
           <h3 className="font-bold text-lg">결과</h3>
           <div className="flex flex-col gap-1">
-            <div className="flex">
-              <p>소요시간:</p>
-              <Timer isRunning={false} />
-            </div>
+            <Timer isRunning={false} />
             <p>정답: {correctCount}</p>
             <p>오답: {incorrectCount}</p>
             <table className="charts-css pie hide-data">

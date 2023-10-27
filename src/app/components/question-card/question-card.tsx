@@ -14,8 +14,8 @@ export function QuestionCard() {
   const { question, answers, correctAnswer } = questions[questionNumber];
 
   return (
-    <div className="flex flex-col items-end gap-1">
-      <Timer isRunning={true} />
+    <div className="flex flex-col items-center gap-3">
+      <Timer isRunning={true} className="text-2xl font-bold" />
       <div className="flex flex-col items-center gap-1">
         <p
           dangerouslySetInnerHTML={{
